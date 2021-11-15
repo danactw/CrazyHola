@@ -1,0 +1,32 @@
+<h1>會員註冊</h1>
+
+<!-- view helper 
+form helper (也是方法的一種，只是在這裡叫helper) -->
+
+<%= form_for(@user, url: '/account_verify') do |form| %>
+  <div class="fields">
+    <%= form.label :email, '信箱' %>
+    <%= form.email_field :email  %>
+  </div>
+
+  <div class="fields">
+    <%= form.label :username, '姓名' %>
+    <%= form.text_field :username %>
+  </div>
+
+  <div class="fields">
+    <%= form.label :password, '密碼' %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit '註冊' %>
+  </div>
+<% end %>
+
+<!-- <form method="post" action="/account_verify">
+  <input type="text" name="username">
+  <input type="password" name="password">
+  <input type="password" name="password_confirm">
+  <input type="submit" value="註冊">
+</form>　 -->
