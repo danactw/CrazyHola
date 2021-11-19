@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  resources :courses
   get '/', to: "pages#index"
-  # 等於 root "pages#index" 整個專案的跟目錄
   get '/about', to: "pages#about"
   get "/sign_up", to: "users#sign_up"
   get "/sign_in", to: "users#sign_in"

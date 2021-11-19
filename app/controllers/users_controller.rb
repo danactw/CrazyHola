@@ -3,7 +3,6 @@ class UsersController  < ApplicationController
     @user = User.new
   end
   def account_verify
-    # 方法一
     clean_params = params.require(:user).permit(:username, :password, :email)
     @user = User.new(clean_params)
     if @user.save
@@ -11,8 +10,6 @@ class UsersController  < ApplicationController
     else
       render :sign_up   #我要借sign_up的view來用
     end
-
-    #方法二
   end
 
   def sign_in
