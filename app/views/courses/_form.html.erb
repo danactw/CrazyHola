@@ -1,0 +1,28 @@
+<% if @course.errors.any? %>
+  <ul>
+  <% @course.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: course) do |f| %>
+  <div class="fields">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="fields">
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+  </div>
+  <div class="fields">
+    <%= f.label :intro %>
+    <%= f.text_area :intro %>
+  </div>
+  <div class="fields">
+    <%= f.label :hour %>
+    <%= f.number_field :hour %>
+  </div>
+
+  <%= f.submit 'submit' %>
+<% end %>

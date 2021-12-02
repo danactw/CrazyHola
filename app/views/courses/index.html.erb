@@ -1,6 +1,18 @@
 <h1>課程列表</h1>
 
-<!-- <a href="/courses/new">新增課程</a> -->
-
-<!-- 只要path寫錯，馬上就會出現錯誤，早發現早修改 -->
 <%= link_to "新增課程", new_course_path %>
+
+<section class="course">
+<% @courses.each do |course| %>
+  <div class="card">
+    <header><%= course.name %></header>
+    <article>
+      <%= course.intro %>
+      <p>課程時數：<%= course.hour %></p>
+    </article>
+    <%= link_to "詳細內容", course_path(course) %>
+    <%= link_to "編輯", edit_course_path(course) %>
+    <%= link_to "刪除", course_path(course), method: 'delete', data: { confirm: '確認刪除？' } %>
+  </div>
+<% end %>
+</section>

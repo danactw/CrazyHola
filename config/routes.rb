@@ -1,9 +1,36 @@
 Rails.application.routes.draw do
-  resources :courses
-  get '/', to: "pages#index"
-  get '/about', to: "pages#about"
+  
+  # post "/api/v1/courses/:id/like", to: "aaa#ccc"
+  #要升級時，就可以不用動到原本的東西
+  namespace :api do
+    namespace :v1 do 
+      resources :courses, only: [] do 
+        member do 
+          post :like
+        end
+      end
+    end
+    # namespace :v2 do 
+    #   resources :courses
+    # end
+  end
+
+  resources :courses do
+    resources :reviews, only: [:create]
+  end
+  resources :reviews, only: [:destroy]
+
+  root "courses#index"
+
+  get "/about", to: "pages#about"
+
+  # users function
   get "/sign_up", to: "users#sign_up"
-  get "/sign_in", to: "users#sign_in"
   post "/account_verify", to: "users#account_verify"
-  post "/sign_in/check", to:"users#check"
+
+  get "/sign_in", to: "users#sign_in"
+  post "/sign_in/check", to: "users#check"
+
+  delete "/sign_out", to: "users#sign_out"
 end
+

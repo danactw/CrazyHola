@@ -1,7 +1,8 @@
 <h1>會員註冊</h1>
 
-<!-- view helper 
-form helper (也是方法的一種，只是在這裡叫helper) -->
+<!-- 常見的view helper:link_to, form_for,  -->
+<!-- view helper 裡的form helper (也是方法的一種，只是在這裡叫helper) -->
+<!-- <% %>是為了讓html檔案知道我們在這裡面寫的程式碼是ruby的語法=>erb的檔案 -->
 
 <%= form_for(@user, url: '/account_verify') do |form| %>
   <div class="fields">
@@ -24,9 +25,4 @@ form helper (也是方法的一種，只是在這裡叫helper) -->
   </div>
 <% end %>
 
-<!-- <form method="post" action="/account_verify">
-  <input type="text" name="username">
-  <input type="password" name="password">
-  <input type="password" name="password_confirm">
-  <input type="submit" value="註冊">
-</form>　 -->
+

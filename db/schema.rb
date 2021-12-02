@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_19_043626) do
+ActiveRecord::Schema.define(version: 2021_12_01_074856) do
 
   create_table "courses", force: :cascade do |t|
     t.string "name"
@@ -20,6 +20,29 @@ ActiveRecord::Schema.define(version: 2021_11_19_043626) do
     t.string "cover"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_courses_on_user_id"
+  end
+
+  create_table "favor_courses", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_favor_courses_on_course_id"
+    t.index ["user_id"], name: "index_favor_courses_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.integer "rating"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "course_id"
+    t.index ["course_id"], name: "index_reviews_on_course_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -30,4 +53,7 @@ ActiveRecord::Schema.define(version: 2021_11_19_043626) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "favor_courses", "courses"
+  add_foreign_key "favor_courses", "users"
+  add_foreign_key "reviews", "users"
 end
