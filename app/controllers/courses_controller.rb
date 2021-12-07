@@ -15,6 +15,20 @@ class CoursesController < ApplicationController
     # lazy loading => 若在view裡面還沒有要用前，不會到資料庫裡面查資料，所以在log中只會有select
   end
 
+  def buy
+    @course = Course.find(params[:id])
+    @order = Order.new
+
+    gateway = Braintree::Gateway.new(
+      :environment => :sandbox,
+      :merchant_id => 'v2226jhc6xqf4jss',
+      :public_key => '6k96p6cxwpdbg67y',
+      :private_key => '24f7c9159027fa7ef57c3290ec22fde2',
+    )
+
+    @token = gateway.client_token.generate()
+  end
+
   def new
     @course = Course.new
   end

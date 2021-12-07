@@ -1,12 +1,16 @@
-
-<h1>
+<h1 data-controller="favorite"
+    data-favorite-liked-value="<% user_signed_in? && current_user.favorite_courses.include?(@course)%>"
+    data-favorite-course-id-value="<%= @course.id%>">
+    
   <%= @course.name %>
-  <% if user_signed_in? && current_user.favorite_courses.include?(@course) %>
-    <button id="like-btn" class="favorite" data-id=<%= @course.id%>>Like</button>
-  <% else %>
-    <button id="like-btn" data-id=<%= @course.id%>>Like</button>
-  <% end %>
+    <button data-favorite-target="btn" 
+            data-action="favorite#like">
+            Like
+    </button>
 </h1>
+
+<%= link_to '購買課程', buy_course_path(@course) %>
+
 
 <%= form_for(@review, url: course_reviews_path(@course), remote: true) do |form| %>
 

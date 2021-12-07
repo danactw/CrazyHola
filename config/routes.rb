@@ -15,10 +15,22 @@ Rails.application.routes.draw do
     # end
   end
 
+  # resources :orders, only: [:index, :create] do
+  #   member do 
+  #     get :cancel
+  #   end
+  # end
+
   resources :courses do
+    member do
+      get :buy
+    end
     resources :reviews, only: [:create]
+    resources :orders, only: [:create]    #POST　/courses/2/orders 因為跟課程有關需要課程id
   end
+
   resources :reviews, only: [:destroy]
+  # resources :orders, only: [:index]     # /orders
 
   root "courses#index"
 

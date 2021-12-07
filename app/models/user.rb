@@ -4,6 +4,7 @@ class User < ApplicationRecord
   validates :email, :username, presence: true
 
   has_many :courses
+  has_many :orders
 
   has_many :favor_courses
   # has_many :courses, through: :favor_courses table名稱會和第6行一樣，所以這裡要改

@@ -1,0 +1,24 @@
+<h1>購買課程</h1>
+
+<%= form_for(@order, url: course_orders_path(@course)) do |form| %>
+
+  <!-- 有兩個方法可以把token塞進div中：透過value或dataset -->
+  <div data-controller='payment' data-payment-token-value="<%= @token %>">
+    <div data-payment-target="dropin"></div>
+    <input type="hidden" name="nonce" data-payment-target="nonce">
+  </div>
+  <!-- <div data-controller='payment' data-token="<% @token %>"></div> -->
+  
+
+<div class="fields">
+  <%= form.label :recipient %>
+  <%= form.text_field :recipient %>
+</div>
+
+<div class="fields">
+  <%= form.label :address %>
+  <%= form.text_field :address %>
+</div>
+
+<%= form.submit %>
+<% end %>
