@@ -3,7 +3,9 @@ class CoursesController < ApplicationController
   before_action :authenticate!, except: [:index, :show]
 
   def index
-    @courses = Course.all
+    # @courses = Course.all      不知道要寫什麼的時候就寫all
+    # @courses = Course.all.includes(:user)  若後面還有其他方法，就可以不要寫all
+    @courses = Course.includes(:user)
   end
 
   def show

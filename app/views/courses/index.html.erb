@@ -5,7 +5,12 @@
 <section class="course">
 <% @courses.each do |course| %>
   <div class="card">
-    <header><%= course.name %></header>
+    <header>
+      (<%= course.reviews.size %>)
+      <% course.reviews_count %>
+      <%= course.name %>
+      <%= course.user&.username %>
+    </header>
     <article>
       <%= course.intro %>
       <p>課程時數：<%= course.hour %></p>

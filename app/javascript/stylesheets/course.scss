@@ -5,8 +5,10 @@
 
 section.course {
   display: flex;
+  flex-wrap: wrap;
 
   .card {
+    width: 300px;
     padding: 8px 12px;
     border: 1px solid gray;
     border-radius: 8px;

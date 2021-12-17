@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+# 新增課程
+5.times do |i|
+    u = User.random
+    u.courses.create(name: Faker::Movies::LordOfTheRings.character, 
+                    price: Faker::Number.between(from: 10, to: 100), 
+                    hour: Faker::Number.between(from: 1, to: 20))
+end
